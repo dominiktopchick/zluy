@@ -30,7 +30,11 @@
         p {
             color: green;
             font-size: 18px; /* larger paragraph font */
-            
+            line-height: 1.6; /* improve readability */
+            text-align: justify; /* make both left and right edges straight */
+            text-justify: inter-word;
+            hyphens: auto; /* allow hyphenation for better justification */
+            margin-bottom: 1em;
         }
 
         /* Images: responsive handling so .image-row fits any sized image */
@@ -73,9 +77,16 @@
         .image-row {
             display: flex;
             gap: 16px;
-            justify-content: left; /* center the group */
-            align-items: left;
+            justify-content: center; /* center the group */
+            align-items: center;
             flex-wrap: wrap;
+        }
+
+        /* Centered content wrapper to keep text blocks straight and readable */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 12px;
         }
 
         /* Small screens: reduce font-size slightly */
@@ -89,6 +100,7 @@
     </style>
 </head>
 <body>
+    <main class="content">
     <h1>Paralelogramma</h1>
     <p>A paralelogramma olyan négyszög, amelynek két-két szemközti oldala párhuzamos.</p>
     <figure class="image-row">
@@ -103,9 +115,9 @@
             <img src="https://www.matekmindenkinek.hu/files/article/article_279/Kep_1_sm.webp">
         </div>
     <h2>2.Szögek:</h2>
-    <p>A szemközti szögei egyenlők (α=γ és β=δ).
-A szomszédos szögek összege mindig 180∘ (mivel társszögek).
-    </p>
+    <p>A szemközti szögei egyenlők (α=γ és β=δ). A szomszédos szögek összege mindig 180∘ (mivel társszögek).</p>
+    <p>.</p>
+    <p></p>
     <figure class="image-row">
         <div class="img-wrap">
             <img src="https://www.matekmindenkinek.hu/files/article/article_279/Kep_2_sm.webp">
@@ -153,7 +165,7 @@ Számítsuk ki a kerületét és a területét!</p>
     <p>2. Terület számítása: A területnél fontos, hogy az oldalt a hozzá tartozó (rá merőleges) magassággal szorozzuk meg</p>
     <p>T=a⋅ma</p>
     <p>T=8⋅4=32 cm2</p>
-    <p></p>
+</main>
     <h2>Всі права захищені Barabashka security, власник сайта Dominik недає права на копіювання сайту!</h2>
 </body>
 </html>
