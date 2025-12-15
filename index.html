@@ -1,21 +1,159 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="hu">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UVAGA</title>
+    <title>Paralelogramma</title>
     <style>
+        /* Page layout */
         body {
-            background-color: red;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: lightgreen; /* light blue */
+            min-height: 100vh; /* ensure the background fills the viewport */
+            color: #003; /* default text color, to ensure contrast */
         }
+
+        /* Headings */
         h1 {
-            font-size: 60px;
             text-align: center;
-            color: white; /* Optional: Makes the text more readable */
+            color: darkgreen;
+            margin-top: 0;
         }
+        /* Center h2 headings as well */
+        h2 {
+            text-align: center;
+        }
+
+        /* Paragraphs */
+        p {
+            color: green;
+            font-size: 18px; /* larger paragraph font */
+            line-height: 1.5;
+        }
+
+        /* Images: responsive handling so .image-row fits any sized image */
+        img {
+            display: block; /* center with margin auto when not in a wrapper */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto; /* keep intrinsic aspect ratio */
+            border-radius: 4px; /* subtle rounding */
+            transition: transform 0.35s ease; /* smooth zoom transition */
+            transform-origin: center center;
+        }
+        /* Image wrapper: constrain images visually but allow different intrinsic sizes to fit */
+        .img-wrap {
+            flex: 0 1 200px; /* base size, allows shrinking/growing */
+            max-width: 200px;
+            max-height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* hide overflow when scaling */
+            border-radius: 4px;
+        }
+        /* Images inside .img-wrap will scale down to fit the wrapper while preserving aspect ratio */
+        .img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* ensure whole image is visible */
+        }
+        /* Zoom on hover (still works for images inside wrapper) */
+        .img-wrap img:hover {
+            transform: scale(1.08);
+        }
+
+        /* If you have multiple images, you can use this class to wrap them */
+        .image-row {
+            display: flex;
+            gap: 16px;
+            justify-content: left; /* center the group */
+            align-items: left;
+            flex-wrap: wrap;
+        }
+
+        /* Small screens: reduce font-size slightly */
+        @media (max-width: 400px) {
+            p { font-size: 16px; }
+            img { width: 160px; height: 160px; }
+        }
+        .left-link { display: block; text-align: left; margin: 0; }
+        .center-link { display: block; text-align: center; margin: 0; }
+        .right-link { display: block; text-align: right; margin: 0; }
     </style>
 </head>
 <body>
-    <h1>УВАГА ОБЕРЕЖНО ДІДУС ДУЖЕ ЗЛИЙ СЬОГОДНІ РІВЕНЬ ЗЛОСТІ І СУМУ ПЕРЕВИЩУЄ ЗА НОРМУ ОБЕРЕЖНО!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+    <h1>Paralelogramma</h1>
+    <p>A paralelogramma olyan négyszög, amelynek két-két szemközti oldala párhuzamos.</p>
+    <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Parallelogram.svg/330px-Parallelogram.svg.png">
+        </div>
+    </figure>
+    <h1>Tulajdonságok </h1>
+    <p>1.Oldalak: A szemközti oldalai egyenlő hosszúak (a=c és b=d).</p>
+    <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://www.matekmindenkinek.hu/files/article/article_279/Kep_1_sm.webp">
+        </div>
+        <h2>2.Szögek:</h2>
+        <p>A szemközti szögei egyenlők (α=γ és β=δ).
+A szomszédos szögek összege mindig 180∘ (mivel társszögek).
+        </p>
+        <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://www.matekmindenkinek.hu/files/article/article_279/Kep_2_sm.webp">
+        </div>
+        <h2>Pelda feladat: Ha a paralelogramma egyik szöge 110°-os, mekkora a többi szöge?</h2>
+        <p>Megoldás: Használjuk az előző összefüggést: α + β = 180°. Ebbe behelyettesítjük az adott szöget:
+110°+ β = 180° , amiből már könnyen látod, hogy β = 70°.
+Tehát a paralelogramma négy szöge 110°, 70°, 110°, 70°.</p>
+        <h2>3.Átlók:</h2>
+        <p>Az átlók felezik egymást. A metszéspontjuk a paralelogramma középpontja.
+Az átlók általában nem egyenlő hosszúak (kivéve a téglalapot).</p>
+        <p>Szimmetria: Középpontosan szimmetrikus alakzat (a középpontja az átlók metszéspontja), de általános esetben nem tengelyesen szimmetrikus.</p>
+        <h2>Speciális paralelogrammák</h2>
+        <p>Vannak olyan alakzatok, amikre a fentiek mind igazak, de van még extra tulajdonságuk is:</p>
+        <p>Téglalap	Minden szöge derékszög (90∘). Az átlói egyenlő hosszúak.</p>
+        <p>Rombusz	Minden oldala egyenlő hosszú. Az átlói merőlegesek egymásra és felezik a szögeket.</p>
+        <p>Négyzet	Minden oldala egyenlő ÉS minden szöge derékszög. (A "legtökéletesebb" paralelogramma).</p>
+        
+        <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://www.matekmindenkinek.hu/files/article/article_279/Halmaz_sm.webp">
+        </div>
+        <p>A paralelogramma középpontosan szimmetrikus négyszög,- ebből következik, hogy átlói felezik egymást. Viszont ügyelj rá, hogy az általános paralelogramma NEM tengelyesen szimmetrikus (csak azok a paralelogrammák, amik egyben rombuszok vagy téglalapok is).</p>
+        <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://www.matekmindenkinek.hu/files/article/article_279/Depositphotos_3711254_XL_med.webp">
+        </div>
+        <h2>Kerület és Terület számítása</h2>
+        <p>A számolásnál figyelni kell arra, hogy a magasság (m) mindig merőleges az oldalra!</p>
+        <figure class="image-row">
+        <div class="img-wrap">
+            <img src="https://www.matekmindenkinek.hu/files/article/article_279/Kep_3_sm.webp">
+        </div>
+        <h2>Kerület (K): Az oldalak hosszának összege. </h2>
+        <p>K=2⋅(a+b)</p>
+        <p>Terület (T): Oldal szorozva a hozzá tartozó magassággal</p>
+        <h2>Példa feladat</h2>
+        <p>Egy paralelogramma oldalai a=8 cm és b=5 cm. 
+Az a oldalhoz tartozó magassága ma=4 cm. 
+Számítsuk ki a kerületét és a területét!</p>
+        <p>1. Kerület számítása: A kerület a körbejárható hosszúság, azaz a két darab a és két darab b oldal összege. </p>
+        <p>K=2⋅(a+b)</p>
+        <p>K=2⋅(8+5)</p>
+        <p>K=2⋅13=26 cm</p>
+        <p>2. Terület számítása: A területnél fontos, hogy az oldalt a hozzá tartozó (rá merőleges) magassággal szorozzuk meg</p>
+        <p>T=a⋅ma</p>
+        <p>T=8⋅4=32 cm2</p>
+        <p></p>
+        <h2>Всі права захищені Barabashka security, власник сайта Dominik недає права на копіювання сайту!</h2>
 </body>
 </html>
