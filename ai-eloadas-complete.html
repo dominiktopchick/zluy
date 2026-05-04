@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Előadás - Mesterséges Intelligencia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --secondary: #3b82f6;
+            --dark: #0f172a;
+            --darker: #1e293b;
+            --darkest: #0f172a;
+            --slate-700: #334155;
+            --slate-400: #94a3b8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--darkest) 0%, var(--darker) 50%, var(--darkest) 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.4);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .gradient-blob-1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+            top: -200px;
+            left: -200px;
+            animation: float 8s infinite;
+        }
+
+        .gradient-blob-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+            bottom: -200px;
+            right: -200px;
+            animation: float 8s infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 9999px;
+            color: #a5f3fc;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(90deg, var(--primary), var(--secondary), #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--slate-400);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.5);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            border: 2px solid rgba(6, 182, 212, 0.5);
+            color: white;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--slate-400);
+            font-size: 1.125rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0s; }
+        .feature-card:nth-child(2) { animation-delay: 0.1s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .feature-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: var(--slate-400);
+            font-size: 0.95rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 5rem 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .process-card {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .process-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .process-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .process-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-desc {
+            color: var(--slate-400);
+            font-size: 0.9rem;
+        }
+
+        /* Quiz Section */
+        .quiz {
+            padding: 5rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quiz-start {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+            padding: 4rem 2rem;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .quiz-start-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .quiz-start-content p {
+            font-size: 1.125rem;
+            color: var(--slate-400);
+            margin-bottom: 2rem;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .question-counter {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 9999px;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        #questionText {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid rgba(51, 65, 85, 0.5);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .quiz-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 2px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .results-card {
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #resultsTitle {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        #resultsText {
+            color: var(--slate-400);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        #resultsList {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .result-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+
+        .result-item.wrong {
+            border-left-color: #ef4444;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-box {
+            padding: 3rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .cta-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .cta-desc {
+            color: var(--slate-400);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(51, 65, 85, 0.5);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--slate-400);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .quiz-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+                <span class="logo-text">Előadás</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Jellemzők</a>
+                <a href="#process">Folyamat</a>
+                <a href="#quiz">Kvíz</a>
+                <a href="#contact">Kapcsolat</a>
+                <button class="nav-btn">Kezdés</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="gradient-blob-1"></div>
+            <div class="gradient-blob-2"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ A mesterséges intelligencia jövője</div>
+            <h1 class="hero-title">
+                Az AI-t szeretnél
+                <br>
+                <span class="hero-title-gradient">megérteni?</span>
+            </h1>
+            <p class="hero-description">
+                Fedezd fel a mesterséges intelligencia titkait. Az alapoktól a legfejlettebb alkalmazásokig.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" data-scroll="#features">
+                    Megtekintés <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-secondary" data-scroll="#process">
+                    Tudj meg többet
+                </button>
+            </div>
+            <div class="bounce">
+                <i class="fas fa-chevron-down" style="font-size: 2rem; color: var(--primary);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">
+            Az AI
+            <span class="hero-title-gradient">jellemzői</span>
+        </h2>
+        <p class="section-subtitle">Miért fontos a mesterséges intelligencia az 21. században</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Mélytanulás</h3>
+                <p class="feature-desc">A legújabb neurális hálózatok és gépi tanulási modellek</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Valós idejű feldolgozás</h3>
+                <p class="feature-desc">Villámgyors adatelemzés és döntéshozatal</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3 class="feature-title">Automatizálás</h3>
+                <p class="feature-desc">Összetett folyamatok automata kezelése</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 class="feature-title">Kreatív AI</h3>
+                <p class="feature-desc">Szöveg-, kép- és videógenerálás</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <h2 class="section-title">
+            Hogyan működik az
+            <span class="hero-title-gradient">AI?</span>
+        </h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <h3 class="process-title">Adatgyűjtés</h3>
+                <p class="process-desc">Az AI modellek alapja a minőségi, tematikus adatok</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <h3 class="process-title">Betanítás</h3>
+                <p class="process-desc">A modell tanul a milliók közül az adatokat feldolgozva</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <h3 class="process-title">Validáció</h3>
+                <p class="process-desc">A pontosság és megbízhatóság tesztelése</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">04</div>
+                <h3 class="process-title">Telepítés</h3>
+                <p class="process-desc">Az AI rendszer bevezetése a valódi alkalmazásokba</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <h2 class="section-title">
+            Teszteld magad!
+            <span class="hero-title-gradient">AI Kvíz</span>
+        </h2>
+        <p class="section-subtitle">Mennyire ismered a mesterséges intelligenciát?</p>
+        
+        <div id="quizStart" class="quiz-start">
+            <div class="quiz-start-content">
+                <h3>Készen állsz?</h3>
+                <p>5 kérdésből álló teszt az AI-ról. Időkorlát nélkül válaszolhatsz.</p>
+                <button class="btn btn-primary" onclick="startQuiz()">Teszt indítása</button>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer" style="display: none;">
+            <div class="quiz-content" id="quizContent">
+                <div class="quiz-question">
+                    <div class="question-counter"><span id="currentQuestion">1</span>/<span id="totalQuestions">5</span></div>
+                    <h3 id="questionText"></h3>
+                    <div class="quiz-options" id="optionsContainer"></div>
+                </div>
+                <div class="quiz-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="quiz-results" id="quizResults" style="display: none;">
+                <div class="results-card">
+                    <div class="results-icon" id="resultsIcon">🎉</div>
+                    <h3 id="resultsTitle"></h3>
+                    <p id="resultsText"></p>
+                    <div id="resultsList"></div>
+                    <button class="btn btn-primary" onclick="restartQuiz()">Újrakezdés</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta">
+        <div class="cta-box">
+            <div class="cta-icon">📊</div>
+            <h2 class="cta-title">Készen áll?</h2>
+            <p class="cta-desc">
+                Kezdje el az AI utazását még ma. Az összes anyag ingyenes és elérhető.
+            </p>
+            <button class="btn btn-primary" data-scroll="#quiz">
+                Indítsd el az előadást
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 AI Előadás. Összes jog fenntartva.</p>
+    </footer>
+
+    <script>
+        // Quiz Data
+        const quizData = [
+            {
+                question: "Mi az a mesterséges intelligencia?",
+                options: [
+                    "Emberekhez hasonló gondolkodásra képes gép",
+                    "Algoritmusok, amelyek adatokból tanulnak és döntéseket hoznak",
+                    "Csak játékokhoz használható technológia",
+                    "A tudomány fikciójában létezik, valóságban nem"
+                ],
+                correct: 1
+            },
+            {
+                question: "Melyik az AI tanulásának alapja?",
+                options: [
+                    "Intuitív gondolkodás",
+                    "Adatok és matematikai modellek",
+                    "Emberi közvetítés",
+                    "Véletlen döntések"
+                ],
+                correct: 1
+            },
+            {
+                question: "Mit csinál a neurális hálózat?",
+                options: [
+                    "Elektromosságot vezet",
+                    "Utánozza az emberi agy működését",
+                    "Vezetékeket csatornáz",
+                    "Csak orvosságok készítésében hasznos"
+                ],
+                correct: 1
+            },
+            {
+                question: "Milyen adatokra van szüksége az AI-nak tanuláshoz?",
+                options: [
+                    "Szörnyűen sok, rossz minőségű adat",
+                    "Kevés, de kiváló minőségű adat",
+                    "Egyáltalán nem kell adat",
+                    "Csak videóadatok"
+                ],
+                correct: 1
+            },
+            {
+                question: "Mit jelent az 'deep learning' vagy mélytanulás?",
+                options: [
+                    "Hosszú ideig tanulmányozni valamit",
+                    "Több rétegű neurális hálózatok használata",
+                    "A fejből tanulni",
+                    "Nem létezik valódi fogalom"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answers = [];
+
+        // Smooth scroll function
+        window.smoothScrollTo = function(selector) {
+            const target = document.querySelector(selector);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+        // Start Quiz
+        window.startQuiz = function() {
+            const quizStart = document.getElementById('quizStart');
+            const quizContainer = document.getElementById('quizContainer');
+            
+            if (quizStart) quizStart.style.display = 'none';
+            if (quizContainer) quizContainer.style.display = 'block';
+            
+            currentQuestion = 0;
+            score = 0;
+            answers = [];
+            
+            showQuestion();
+        };
+
+        // Show question
+        function showQuestion() {
+            const question = quizData[currentQuestion];
+            const questionTextEl = document.getElementById('questionText');
+            if (questionTextEl) {
+                questionTextEl.textContent = question.question;
+            }
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            if (optionsContainer) {
+                optionsContainer.innerHTML = '';
+                
+                question.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'quiz-option';
+                    button.textContent = option;
+                    button.onclick = () => selectAnswer(index);
+                    optionsContainer.appendChild(button);
+                });
+            }
+
+            updateProgress();
+        }
+
+        // Select answer
+        function selectAnswer(index) {
+            const question = quizData[currentQuestion];
+            answers[currentQuestion] = index;
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === question.correct) {
+                    btn.classList.add('correct');
+                } else if (i === index && index !== question.correct) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            if (index === question.correct) {
+                score++;
+            }
+
+            setTimeout(() => {
+                if (currentQuestion < quizData.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
+
+        // Update progress
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+            
+            const currentQEl = document.getElementById('currentQuestion');
+            if (currentQEl) {
+                currentQEl.textContent = currentQuestion + 1;
+            }
+        }
+
+        // Show results
+        function showResults() {
+            const quizContent = document.getElementById('quizContent');
+            const quizResults = document.getElementById('quizResults');
+            
+            if (quizContent) quizContent.style.display = 'none';
+            if (quizResults) quizResults.style.display = 'block';
+            
+            const percentage = (score / quizData.length) * 100;
+            let title, icon, resultText;
+
+            if (percentage === 100) {
+                title = "Tökéletes! 🌟";
+                icon = "🏆";
+                resultText = "Kiváló! Valóban szakértő vagy az AI-ban!";
+            } else if (percentage >= 80) {
+                title = "Nagyon jó! 👏";
+                icon = "🎯";
+                resultText = "Szinte tökéletes! Valóban jól ismered az AI-t.";
+            } else if (percentage >= 60) {
+                title = "Jó teljesítmény! ✨";
+                icon = "⭐";
+                resultText = "Jó alapismereteid vannak, de tanulhatsz még!";
+            } else {
+                title = "Kicsit több gyakorlat kell! 📚";
+                icon = "📖";
+                resultText = "Ne aggódj! A tanulás folyamatos folyamat.";
+            }
+
+            const resultsIcon = document.getElementById('resultsIcon');
+            const resultsTitle = document.getElementById('resultsTitle');
+            const resultsText = document.getElementById('resultsText');
+            
+            if (resultsIcon) resultsIcon.textContent = icon;
+            if (resultsTitle) resultsTitle.textContent = title;
+            if (resultsText) {
+                resultsText.innerHTML = `
+                    <p><strong>${resultText}</strong></p>
+                    <p style="margin-top: 1rem; font-size: 1.5rem;">
+                        <span style="color: var(--primary); font-weight: bold;">${score}/${quizData.length}</span> helyes válasz
+                    </p>
+                `;
+            }
+
+            let resultsList = '<h4 style="margin-bottom: 1rem;">Válaszaid:</h4>';
+            quizData.forEach((q, i) => {
+                const isCorrect = answers[i] === q.correct;
+                const itemClass = isCorrect ? '' : ' wrong';
+                resultsList += `
+                    <div class="result-item${itemClass}">
+                        <strong>${i + 1}. ${q.question}</strong>
+                        <p style="margin-top: 0.5rem; color: var(--slate-400);">
+                            Válaszod: ${q.options[answers[i]]} ${isCorrect ? '✓' : '✗'}
+                        </p>
+                    </div>
+                `;
+            });
+            
+            const resultsListEl = document.getElementById('resultsList');
+            if (resultsListEl) {
+                resultsListEl.innerHTML = resultsList;
+            }
+        }
+
+        // Restart quiz
+        window.restartQuiz = function() {
+            const quizStart = document.getElementById('quizStart');
+            const quizContainer = document.getElementById('quizContainer');
+            const quizContent = document.getElementById('quizContent');
+            const quizResults = document.getElementById('quizResults');
+            
+            if (quizStart) quizStart.style.display = 'block';
+            if (quizContent) quizContent.style.display = 'block';
+            if (quizResults) quizResults.style.display = 'none';
+            
+            currentQuestion = 0;
+            score = 0;
+            answers = [];
+            
+            showQuestion();
+        };
+
+        // Setup navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.smoothScrollTo(this.getAttribute('href'));
+                });
+            });
+
+            // Data-scroll buttons
+            document.querySelectorAll('[data-scroll]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-scroll');
+                    window.smoothScrollTo(target);
+                });
+            });
+
+            // Hover effects
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
