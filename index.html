@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Előadás - Mesterséges Intelligencia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+                <span class="logo-text">Előadás</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Jellemzők</a>
+                <a href="#process">Folyamat</a>
+                <a href="#quiz">Kvíz</a>
+                <a href="#contact">Kapcsolat</a>
+                <button class="nav-btn">Kezdés</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="gradient-blob-1"></div>
+            <div class="gradient-blob-2"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ A mesterséges intelligencia jövője</div>
+            <h1 class="hero-title">
+                Az AI-t szeretnél
+                <br>
+                <span class="hero-title-gradient">megérteni?</span>
+            </h1>
+            <p class="hero-description">
+                Fedezd fel a mesterséges intelligencia titkait. Az alapoktól a legfejlettebb alkalmazásokig.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    Megtekintés <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-secondary">
+                    Tudj meg többet
+                </button>
+            </div>
+            <div class="bounce">
+                <i class="fas fa-chevron-down" style="font-size: 2rem; color: var(--primary);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">
+            Az AI
+            <span class="hero-title-gradient">jellemzői</span>
+        </h2>
+        <p class="section-subtitle">Miért fontos a mesterséges intelligencia az 21. században</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Mélytanulás</h3>
+                <p class="feature-desc">A legújabb neurális hálózatok és gépi tanulási modellek</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Valós idejű feldolgozás</h3>
+                <p class="feature-desc">Villámgyors adatelemzés és döntéshozatal</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3 class="feature-title">Automatizálás</h3>
+                <p class="feature-desc">Összetett folyamatok automata kezelése</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 class="feature-title">Kreatív AI</h3>
+                <p class="feature-desc">Szöveg-, kép- és videógenerálás</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <h2 class="section-title">
+            Hogyan működik az
+            <span class="hero-title-gradient">AI?</span>
+        </h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <h3 class="process-title">Adatgyűjtés</h3>
+                <p class="process-desc">Az AI modellek alapja a minőségi, tematikus adatok</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <h3 class="process-title">Betanítás</h3>
+                <p class="process-desc">A modell tanul a milliók közül az adatokat feldolgozva</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <h3 class="process-title">Validáció</h3>
+                <p class="process-desc">A pontosság és megbízhatóság tesztelése</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">04</div>
+                <h3 class="process-title">Telepítés</h3>
+                <p class="process-desc">Az AI rendszer bevezetése a valódi alkalmazásokba</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <h2 class="section-title">
+            Teszteld magad!
+            <span class="hero-title-gradient">AI Kvíz</span>
+        </h2>
+        <p class="section-subtitle">Mennyire ismered a mesterséges intelligenciát?</p>
+        
+        <div class="quiz-container">
+            <div class="quiz-content" id="quizContent">
+                <div class="quiz-question">
+                    <div class="question-counter"><span id="currentQuestion">1</span>/<span id="totalQuestions">5</span></div>
+                    <h3 id="questionText"></h3>
+                    <div class="quiz-options" id="optionsContainer"></div>
+                </div>
+                <div class="quiz-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="quiz-results" id="quizResults" style="display: none;">
+                <div class="results-card">
+                    <div class="results-icon" id="resultsIcon">🎉</div>
+                    <h3 id="resultsTitle"></h3>
+                    <p id="resultsText"></p>
+                    <div id="resultsList"></div>
+                    <button class="btn btn-primary" onclick="restartQuiz()">Újrakezdés</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta">
+        <div class="cta-box">
+            <div class="cta-icon">📊</div>
+            <h2 class="cta-title">Készen áll?</h2>
+            <p class="cta-desc">
+                Kezdje el az AI utazását még ma. Az összes anyag ingyenes és elérhető.
+            </p>
+            <button class="btn btn-primary">
+                Indítsd el az előadást
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 AI Előadás. Összes jog fenntartva.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
